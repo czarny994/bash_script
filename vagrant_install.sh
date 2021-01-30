@@ -26,3 +26,13 @@ else
     echo "****** Vagrant was not installed ******"
     exit 1
 fi
+
+echo "*************** Install vagrant-vbguest ***************"
+vagrant plugin uninstall vagrant-vbguest || true
+vagrant plugin install vagrant-vbguest --plugin-version 0.21
+if [ $? -eq 0 ]; then
+    echo "Plugin was installed"
+else
+    echo "Plugin was not installed"
+    exit 1
+fi
