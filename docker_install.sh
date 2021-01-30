@@ -19,7 +19,7 @@ sudo systemctl enable docker.service
 echo "###### Start Docker Service ######"
 sudo systemctl start docker.service
 
-if sudo systemctl status docker.service | grep 'active (exited)';
+if sudo systemctl status docker.service | grep 'active (running)';
 then
     echo "###### Docker was installed and run ######"
 else
