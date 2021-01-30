@@ -1,16 +1,19 @@
 Vagrant.configure("2") do |config|
-    config.vm.provision "shell", inline: "Create two virtual machine"
-  
-    config.vm.define "machine1" do |machine1|
-        machine1.vm.box = "centos/7"
-        machine1.vm.hostname = "machine1"
-        machine1.vm.network "public_network", ip: "192.168.0.10", hostname: true
+    config.vm.box = "centos/7"
+    config.vm.hostname = "BuildMachine1"
+    config.vm.define "BuildMachine1"
+    config.vm.network :public_network, bridge: "wlp6s0"
+    config.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+    end
+end
 
+Vagrant.configure("2") do |config|
+    config.vm.box = "centos/7"
+    config.vm.hostname = "BuildMachine2"
+    config.vm.define "BuildMachine2"
+    config.vm.network :public_network, bridge: "wlp6s0"
+    config.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
     end
-  
-    config.vm.define "machine2" do |machine2|
-        machine2.vm.box = "centos/7"
-        machine2.vm.hostname = "machine2"
-        machine2.vm.network "public_network", ip: "192.168.0.11", hostname: true
-    end
-  end
+end
